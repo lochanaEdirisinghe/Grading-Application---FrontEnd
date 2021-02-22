@@ -33,6 +33,9 @@
       </form>
 
       <div class="alert alert-success" *ngIf="isLoggedIn">
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" (click)="navigate()"> Click Here </button>
+        </div>
         Logged in as {{ roles }}.
         {{token}}
       </div>

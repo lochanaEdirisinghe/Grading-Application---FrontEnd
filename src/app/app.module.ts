@@ -10,6 +10,8 @@ import {FormsModule} from "@angular/forms";
 import {AuthInterceptorService} from "./interceptor/auth-interceptor.service";
 import { HeaderComponent } from './views/header/header.component';
 import { FooterComponent } from './views/footer/footer.component';
+import { StudentComponent } from './views/student/student.component';
+import { TeacherComponent } from './views/teacher/teacher.component';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { FooterComponent } from './views/footer/footer.component';
     LoginComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    StudentComponent,
+    TeacherComponent
   ],
   imports: [
     BrowserModule,
