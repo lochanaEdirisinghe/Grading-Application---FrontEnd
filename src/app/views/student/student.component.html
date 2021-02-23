@@ -14,9 +14,10 @@
       <h4>Class Teacher : {{teacher}}</h4>
       <br>
 
-      <div  *ngFor="let a of assingments">
+      <div *ngFor="let a of assingments">
         <div class="alert alert-primary asmnt" role="alert" (click)="viewQuestions(a.asmntId)">
-          <h5>Assignment Id : {{a.asmntId}} &nbsp;&nbsp;&nbsp;Assignment Name : {{a.asmntName}}&nbsp;&nbsp;&nbsp; Type : {{a.asmntType}}
+          <h5>Assignment Id : {{a.asmntId}} &nbsp;&nbsp;&nbsp;Assignment Name : {{a.asmntName}}&nbsp;&nbsp;&nbsp; Type :
+            {{a.asmntType}}
           </h5>
         </div>
       </div>
@@ -24,16 +25,52 @@
 
     <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionState">
       <h3>Assignment - {{asmntId}}</h3>
-      <div  *ngFor="let q of questions">
-        <div class="alert alert-success" role="alert" (click)="reviewQuestion(q.asmntId)">
+      <br>
+      <div *ngFor="let q of questions">
+        <div class="alert alert-success" role="alert">
           <h5>Question No : {{q.qNo}}&nbsp;&nbsp;&nbsp; Question : {{q.question}}&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="reviewQuestion(q.asmntId)">Review question</button></h5>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="reviewQuestion(q.asmntId, q.qNo)">
+              Review
+              question
+            </button>
+          </h5>
         </div>
       </div>
-
     </div>
 
+    <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionReviewState">
+      <h3>Assignment - {{asmntId}}</h3>
+      <h3>Question No - {{studentmarks.qNo}}</h3>
+      <br>
+      <table class="table">
+        <tbody>
+        <tr>
+          <th scope="row">Question</th>
+          <td>{{studentmarks.question}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Your Answer</th>
+          <td>{{studentmarks.studentAns}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Result</th>
+          <td>{{studentmarks.result}}</td>
+        </tr>
+        <tr>
+          <th scope="row">No of Attempts</th>
+          <td>{{studentmarks.noOfAttempts}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Time spent</th>
+          <td>{{studentmarks.spentTime}}</td>
+        </tr>
+        <tr>
+          <th scope="row">Correct Answer</th>
+          <td>{{studentmarks.correctAnswer}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-
 </section>
 

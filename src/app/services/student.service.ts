@@ -25,4 +25,8 @@ export class StudentService {
   getAsmntQuestions(asmntId): Observable<ResponseDto>{
     return this.http.get<ResponseDto>(this.url2+ "questions/"+ asmntId)
   }
+
+  getStudentMarks(asmntId, qNo, id) : Observable<ResponseDto>{
+    return this.http.get<ResponseDto>(this.url+ id+"/"+asmntId+"/"+qNo)
+  }
 }
