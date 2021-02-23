@@ -1,0 +1,27 @@
+.asmnt:hover {
+  background-color: #6cbee4;
+  cursor: pointer;
+}
+
+.sidebar{
+  background: linear-gradient(to right,#5D90B1 ,#2F4554);
+}
+ul{
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  list-style: none;
+}
+
+ul>li{
+  padding-top:20px ;
+  cursor: pointer;
+  outline: none;
+}
+.active{
+  color: red!important;
+}
+
+.asmntblock{
+  height:89vh;
+}

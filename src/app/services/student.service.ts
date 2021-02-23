@@ -11,14 +11,18 @@ export class StudentService {
 
   constructor(private http: HttpClient) { }
 
-  url = "http://localhost:8080/api/v1/students"
-  url2 = "http://localhost:8080/api/v1/assingments"
+  url = "http://localhost:8080/api/v1/students/"
+  url2 = "http://localhost:8080/api/v1/assingments/"
 
   getStudentDetails(username):Observable<ResponseDto>{
-    return this.http.get<ResponseDto>(this.url+ "/"+username)
+    return this.http.get<ResponseDto>(this.url +username)
   }
 
   getAllAssingments(teacherId): Observable<ResponseDto>{
-    return this.http.get<ResponseDto>(this.url2+"/"+teacherId)
+    return this.http.get<ResponseDto>(this.url2 + teacherId)
+  }
+
+  getAsmntQuestions(asmntId): Observable<ResponseDto>{
+    return this.http.get<ResponseDto>(this.url2+ "questions/"+ asmntId)
   }
 }

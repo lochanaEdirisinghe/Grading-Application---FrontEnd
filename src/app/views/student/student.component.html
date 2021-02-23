@@ -1,1 +1,39 @@
-<p>student works!</p>
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 sidebar">
+      <ul>
+        <li (click)="AssingmentList()" [ngClass]="{'active': assignmentState}">Assingments</li>
+      </ul>
+    </div>
+
+    <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock " style="background-color: white" *ngIf="assignmentState">
+      <br>
+      <h3 style="text-align:left;float:left;">Student Id : {{id}}</h3>
+      <h3 style="text-align:right;float:right;">Name : {{name}}</h3>
+      <h3>Class : {{class}}</h3>
+      <h4>Class Teacher : {{teacher}}</h4>
+      <br>
+
+      <div  *ngFor="let a of assingments">
+        <div class="alert alert-primary asmnt" role="alert" (click)="viewQuestions(a.asmntId)">
+          <h5>Assignment Id : {{a.asmntId}} &nbsp;&nbsp;&nbsp;Assignment Name : {{a.asmntName}}&nbsp;&nbsp;&nbsp; Type : {{a.asmntType}}
+          </h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionState">
+      <h3>Assignment - {{asmntId}}</h3>
+      <div  *ngFor="let q of questions">
+        <div class="alert alert-success" role="alert" (click)="reviewQuestion(q.asmntId)">
+          <h5>Question No : {{q.qNo}}&nbsp;&nbsp;&nbsp; Question : {{q.question}}&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-secondary btn-sm" (click)="reviewQuestion(q.asmntId)">Review question</button></h5>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
