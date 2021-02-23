@@ -1,17 +1,17 @@
 <section class="container-fluid">
   <div class="row">
     <div class="col-sm-2 sidebar">
-      <ul>
+      <ul style="list-style-type: circle;">
         <li (click)="AssingmentList()" [ngClass]="{'active': assignmentState}">Assingments</li>
       </ul>
     </div>
 
     <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock " style="background-color: white" *ngIf="assignmentState">
       <br>
-      <h3 style="text-align:left;float:left;">Student Id : {{id}}</h3>
-      <h3 style="text-align:right;float:right;">Name : {{name}}</h3>
-      <h3>Class : {{class}}</h3>
-      <h4>Class Teacher : {{teacher}}</h4>
+      <h3 style="text-align:left;float:left;">Student Id : {{studentdto.id}}</h3>
+      <h3 style="text-align:right;float:right;">Name : {{studentdto.name}}</h3>
+      <h3>Class : {{studentdto.className}}</h3>
+      <h4>Class Teacher : {{studentdto.teacherId}}</h4>
       <br>
 
       <div *ngFor="let a of assingments">

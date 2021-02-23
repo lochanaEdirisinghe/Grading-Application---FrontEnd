@@ -4,6 +4,7 @@ import {StudentService} from "../../services/student.service";
 import {AssingmentDto} from "../../dto/assingment-dto";
 import {QuestionDto} from "../../dto/question-dto";
 import {StudentMarksDto} from "../../dto/student-marks-dto";
+import {StudentDto} from "../../dto/student-dto";
 
 @Component({
   selector: 'app-student',
@@ -13,11 +14,7 @@ import {StudentMarksDto} from "../../dto/student-marks-dto";
 export class StudentComponent implements OnInit {
 
   username;
-  id;
-  name;
-  class;
-  teacher;
-  teacherId;
+  studentdto: StudentDto;
   assingments: AssingmentDto[] = []
   questions: QuestionDto[] = []
   assignmentState=true
@@ -34,13 +31,11 @@ export class StudentComponent implements OnInit {
 
     })
     this.studentService.getStudentDetails(this.username).subscribe((resp)=>{
-      this.id=resp.data.id
-      this.name=resp.data.name
-      this.class=resp.data.className
-      this.teacher=resp.data.teacher
-      this.teacherId=resp.data.teacherId
+      this.studentdto = new StudentDto(resp.data.id, resp.data.name, resp.data.className,resp.data.teacher,
+        resp.data.teacherId);
 
-      this.studentService.getAllAssingments(this.teacherId).subscribe((resp)=>{
+
+      this.studentService.getAllAssingments(this.studentdto.teacherId).subscribe((resp)=>{
         this.assingments=resp.data
       })
     })
@@ -77,7 +72,7 @@ export class StudentComponent implements OnInit {
         break
       }
     }
-      this.studentService.getStudentMarks(asmntId,qNo,this.id).subscribe((resp)=>{
+      this.studentService.getStudentMarks(asmntId,qNo,this.studentdto.id).subscribe((resp)=>{
         console.log(qNo)
           this.studentmarks=new StudentMarksDto(qNo, this.questions[j].question, resp.data.answer, resp.data.noOfAttempts, resp.data.result,
           this.questions[j].correctAnswer, resp.data.spentTime)
