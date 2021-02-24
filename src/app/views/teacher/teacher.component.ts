@@ -24,6 +24,7 @@ export class TeacherComponent implements OnInit {
   assignmentState:boolean = true;
   questionState:boolean = false;
   questionstatistics:boolean=false;
+  gradeDetails
   questions: QuestionDto[] = []
   assingments: AssingmentDto[] = []
   studentMarks:StudentMarksDto2[]=[];
@@ -54,6 +55,10 @@ export class TeacherComponent implements OnInit {
       for (let i = 0; i < resp.data.length; i++) {
         this.questions.push( new QuestionDto( asmntId, resp.data[i].questionPK.qno, resp.data[i].question, resp.data[i].answer ) )
       }
+    })
+    this.teacherService.getOverallGrades(asmntId).subscribe((resp)=>{
+      console.log(resp.data)
+      this.gradeDetails=resp.data;
     })
   }
   questionStatistics(asmntId, qNo) {

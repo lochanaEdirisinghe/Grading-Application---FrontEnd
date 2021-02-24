@@ -28,8 +28,8 @@
       <br>
       <div *ngFor="let q of questions">
         <div class="alert alert-success" role="alert">
-          <h5>Question No : {{q.qNo}}&nbsp;&nbsp;&nbsp; Question : {{q.question}}&nbsp;&nbsp;&nbsp;
-            <button type="button" class="btn btn-outline-danger btn-sm" (click)="reviewQuestion(q.asmntId, q.qNo)">
+          <h5>Q No : {{q.qNo}}&nbsp;&nbsp;&nbsp; Question : {{q.question}}&nbsp;&nbsp;&nbsp;
+            <button  type="button" class="btn btn-outline-danger btn-sm" (click)="reviewQuestion(q.asmntId, q.qNo)">
               Review
               question
             </button>
@@ -70,6 +70,8 @@
         </tr>
         </tbody>
       </table>
+      <br>
+      <button type="button" class="btn btn-primary" (click)="back()">Back</button>
     </div>
   </div>
 </section>

@@ -43,9 +43,7 @@ export class StudentComponent implements OnInit {
   }
 
   viewQuestions(asmntId){
-    this.assignmentState=false;
-    this.questionState=true
-    this.questionReviewState=false
+    this.stateManager('questionState')
     this.asmntId=asmntId;
     this.studentService.getAsmntQuestions(asmntId).subscribe((resp)=>{
       for (let i = 0; i< resp.data.length; i++){
@@ -56,16 +54,12 @@ export class StudentComponent implements OnInit {
 
   AssingmentList(){
     this.questions = [];
-    this.assignmentState=true;
-    this.questionState=false
-    this.questionReviewState=false
+    this.stateManager('assignmentState')
 
   }
 
   reviewQuestion(asmntId, qNo){
-    this.questionReviewState=true
-    this.assignmentState=false;
-    this.questionState=false
+    this.stateManager('questionReviewState')
     let j=0;
     for (let i = 0; i< this.questions.length; i++){
       if(this.questions[i].asmntId==asmntId){
@@ -78,5 +72,25 @@ export class StudentComponent implements OnInit {
           this.questions[j].correctAnswer, resp.data.spentTime)
       })
   };
+
+  back(){
+    this.stateManager('questionState');
+
+  }
+  stateManager(state) {
+    if (state == "questionState") {
+      this.questionState = true;
+      this.questionReviewState = false;
+      this.assignmentState = false;
+    } else if (state == "questionReviewState") {
+      this.questionReviewState = true;
+      this.questionState = false;
+      this.assignmentState = false;
+    } else if (state == "assignmentState") {
+      this.assignmentState = true;
+      this.questionState = false;
+      this.questionReviewState = false;
+    }
+  }
 
 }

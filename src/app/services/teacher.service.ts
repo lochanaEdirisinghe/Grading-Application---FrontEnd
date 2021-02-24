@@ -29,4 +29,7 @@ export class TeacherService {
     return this.http.get<ResponseDto>(this.url+ asmntId+"/"+qNo)
   }
 
+  getOverallGrades(asmntId) : Observable<ResponseDto>{
+    return this.http.get<ResponseDto>(this.url+"grades/"+asmntId)
+  }
 }

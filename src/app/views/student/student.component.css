@@ -5,6 +5,7 @@
 
 .sidebar{
   background: linear-gradient(to right,#5D90B1 ,#2F4554);
+  height:99vh;
 }
 ul{
   color: white;
