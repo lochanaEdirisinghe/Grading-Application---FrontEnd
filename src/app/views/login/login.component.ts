@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../services/auth.service";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {Router} from "@angular/router";
+import {SharedServiceService} from "../../services/shared-service.service";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit {
   token;
 
   constructor(private authService: AuthService, private tokenStorage: TokenStorageService,
-              private router: Router) { }
+              private router: Router, private sharedService:SharedServiceService) { }
 
   ngOnInit(): void {
     if (this.tokenStorage.getToken()) {
@@ -39,7 +40,18 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = false;
           this.isLoggedIn = true;
           this.roles = this.tokenStorage.getUser().roles;
-          this.reloadPage();
+          //this.reloadPage();
+          this.sharedService.sendClickEvent()
+
+          if (this.roles[0] == 'STUDENT') {
+            this.router.navigate( ['/student'], {
+              queryParams: {userName: this.tokenStorage.getUser().username}
+            } );
+          } else if (this.roles[0] == 'TEACHER') {
+            this.router.navigate( ['/teacher'],{
+              queryParams: {userName: this.tokenStorage.getUser().username}
+            } );
+          }
 
         }else {
           this.isLoginFailed = true;
@@ -55,7 +67,6 @@ export class LoginComponent implements OnInit {
 
   navigate(){
     if (this.roles[0] == 'STUDENT') {
-      console.log(this.tokenStorage.getUser().username)
       this.router.navigate( ['/student'], {
         queryParams: {userName: this.tokenStorage.getUser().username}
       } );

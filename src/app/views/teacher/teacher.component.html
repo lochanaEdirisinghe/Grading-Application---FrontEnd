@@ -14,10 +14,16 @@
       <br>
 
       <div *ngFor="let a of assingments">
-        <div class="alert alert-secondary asmnt" role="alert" (click)="viewQuestions(a.asmntId)">
-          <h5>Assignment Id : {{a.asmntId}} &nbsp;&nbsp;&nbsp;Assignment Name : {{a.asmntName}}&nbsp;&nbsp;&nbsp; Type :
-            {{a.asmntType}}
-          </h5>
+
+        <div class="card">
+          <div class="card-header">
+            <p>Assignment Id : {{a.asmntId}}</p>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{a.asmntName}}</h5>
+            <p class="card-text">Type : {{a.asmntType}}</p>
+            <button class="btn btn-primary" (click)="viewQuestions(a.asmntId)" >Questions</button>
+          </div>
         </div>
       </div>
     </div>
@@ -54,7 +60,7 @@
         </thead>
         <tbody>
         <tr *ngFor="let m of studentMarks">
-          <th scope="row">{{m.studentId}}
+          <td>{{m.studentId}}</td>
           <td>{{m.answer}}</td>
           <td>{{m.noOfAttempts}}</td>
           <td>{{m.result}}</td>
@@ -77,7 +83,7 @@
         </thead>
         <tbody>
         <tr>
-          <th scope="row">{{statistics.avgTime}}
+          <td>{{statistics.avgTime}}</td>
           <td>{{statistics.rightCount}}</td>
           <td>{{statistics.wrongCount}}</td>
           <td>{{statistics.partialCount}}</td>

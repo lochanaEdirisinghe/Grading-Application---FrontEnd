@@ -1,7 +1,5 @@
 <div class="row justify-content-center login" >
-  <div class="col-md-4">
-    <div class="card card-container">
-
+      <div class="col-5 shadow-lg pt-5 pb-5 mt-3">
       <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
         <div class="form-group">
           <label for="username">Username</label>
@@ -37,8 +35,6 @@
           <button class="btn btn-primary btn-block" (click)="navigate()"> Click Here </button>
         </div>
         Logged in as {{ roles }}.
-        {{token}}
       </div>
     </div>
-  </div>
 </div>

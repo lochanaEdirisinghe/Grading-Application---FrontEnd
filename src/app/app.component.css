@@ -1,0 +1,21 @@
+footer{
+
+  height: 39px;
+  background: linear-gradient(to right,#2F4554, #2F4554);
+  box-shadow: 2px 2px 2px #000;
+  opacity: 0.9;
+  color: white;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  align-items: center;
+}
+
+footer>p{
+  color: white;
+  text-shadow: 1px 1px 3px #000000;
+  padding: 10px;
+  outline: none;
+  display: inline-block;
+}

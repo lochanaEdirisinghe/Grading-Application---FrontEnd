@@ -13,17 +13,19 @@ import {StudentDto} from "../../dto/student-dto";
 })
 export class StudentComponent implements OnInit {
 
-  username;
-  studentdto: StudentDto;
+  username:string;
+  asmntId:string;
+  studentdto: StudentDto=new StudentDto("S001");
   assingments: AssingmentDto[] = []
   questions: QuestionDto[] = []
   assignmentState=true
   questionState=false
   questionReviewState=false
-  asmntId;
-  studentmarks:StudentMarksDto;
+  studentmarks:StudentMarksDto=new StudentMarksDto(1);
 
-  constructor(private route:ActivatedRoute, private studentService:StudentService) { }
+  constructor(private route:ActivatedRoute, private studentService:StudentService) {
+
+  }
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe((value) => {
@@ -73,7 +75,6 @@ export class StudentComponent implements OnInit {
       }
     }
       this.studentService.getStudentMarks(asmntId,qNo,this.studentdto.id).subscribe((resp)=>{
-        console.log(qNo)
           this.studentmarks=new StudentMarksDto(qNo, this.questions[j].question, resp.data.answer, resp.data.noOfAttempts, resp.data.result,
           this.questions[j].correctAnswer, resp.data.spentTime)
       })

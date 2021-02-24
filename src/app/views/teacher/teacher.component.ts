@@ -16,17 +16,18 @@ export class TeacherComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private teacherService: TeacherService) {}
 
-  username;
-  teacher: TeacherDto;
-  assingments: AssingmentDto[] = []
-  assignmentState = true;
-  questionState = false;
+  username: string;
+  asmntId: string;
+  qNo: number;
+  statistics: StatisticsDto=new StatisticsDto("00:00:00");
+  teacher: TeacherDto=new TeacherDto("T002");
+  assignmentState:boolean = true;
+  questionState:boolean = false;
+  questionstatistics:boolean=false;
   questions: QuestionDto[] = []
-  asmntId;
-  qNo;
-  questionstatistics=false;
+  assingments: AssingmentDto[] = []
   studentMarks:StudentMarksDto2[]=[];
-  statistics: StatisticsDto;
+
 
   ngOnInit(): void {
     this.route.queryParamMap.subscribe( (value) => {
@@ -42,16 +43,12 @@ export class TeacherComponent implements OnInit {
   }
 
   AssingmentList() {
-    this.assignmentState = true
-    this.questionState = false
-    this.questionstatistics=false
+    this.stateManager("assignmentState")
     this.questions = [];
   }
 
   viewQuestions(asmntId) {
-    this.questionState = true
-    this.assignmentState = false;
-    this.questionstatistics=false
+    this.stateManager("questionState")
     this.asmntId=asmntId;
     this.teacherService.getAsmntQuestions( asmntId ).subscribe( (resp) => {
       for (let i = 0; i < resp.data.length; i++) {
@@ -60,9 +57,7 @@ export class TeacherComponent implements OnInit {
     })
   }
   questionStatistics(asmntId, qNo) {
-    this.questionstatistics=true;
-    this.questionState = false;
-    this.assignmentState = false;
+    this.stateManager("questionstatistics")
     this.qNo=qNo;
       this.teacherService.getQuestionStatics(asmntId, qNo).subscribe((resp)=>{
         console.log(resp.data)
@@ -70,8 +65,22 @@ export class TeacherComponent implements OnInit {
         this.studentMarks=resp.data.studentMarks
       })
   }
-  viewStatistics(){
 
+  stateManager(state){
+    if(state=="questionState"){
+      this.questionState=true;
+      this.questionstatistics=false;
+      this.assignmentState = false;
+    }else if(state=="questionstatistics"){
+      this.questionstatistics=true;
+      this.questionState=false;
+      this.assignmentState = false;
+    }else if(state=="assignmentState"){
+      this.assignmentState = true;
+      this.questionState=false;
+      this.questionstatistics=false;
+    }
   }
+
 
 }
