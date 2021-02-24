@@ -24,7 +24,6 @@ export class StudentComponent implements OnInit {
   studentmarks:StudentMarksDto=new StudentMarksDto(1);
 
   constructor(private route:ActivatedRoute, private studentService:StudentService) {
-
   }
 
   ngOnInit(): void {

@@ -1,7 +1,4 @@
 import { Component } from '@angular/core';
-import {TokenStorageService} from "./services/token-storage.service";
-import {SharedServiceService} from "./services/shared-service.service";
-import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-root',

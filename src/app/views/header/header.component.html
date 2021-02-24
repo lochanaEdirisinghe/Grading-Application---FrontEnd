@@ -1,18 +1,6 @@
 <header >
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <a routerLink="/login" class="navbar-brand">Grading Application</a>
-    <ul class="navbar-nav mr-auto" routerLinkActive="active">
-      <!-- <li class="nav-item">
-         <a class="nav-link" routerLink="home" routerLinkActive="active">Home </a>
-       </li>-->
-      <!-- <li class="nav-item" *ngIf="showStudentView">
-         <a class="nav-link" routerLink="student">Student Area</a>
-         </li>
-          <li class="nav-item" *ngIf="showTeacherView">
-            <a class="nav-link" routerLink="teacher">Teacher Area</a>
-          </li>-->
-    </ul>
-
     <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
       <li class="nav-item">
         <a class="nav-link" routerLink="login">Login</a>
@@ -20,10 +8,10 @@
     </ul>
 
     <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
-      <!--<li class="nav-item">
-        <a class="nav-link" *ngIf="showStudentView" routerLink="student">{{ username }}</a>
-        <a class="nav-link" *ngIf="showTeacherView" routerLink="teacher">{{ username }}</a>
-      </li>-->
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="showStudentView" (click)="navigate()" style="cursor: pointer;">{{ username }}</a>
+        <a class="nav-link" *ngIf="showTeacherView" (click)="navigate()" style="cursor: pointer;">{{ username }}</a>
+      </li>
       <li class="nav-item">
         <a href class="nav-link" (click)="logout()">LogOut</a>
       </li>

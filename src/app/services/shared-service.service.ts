@@ -7,9 +7,6 @@ import {Observable, Subject} from "rxjs";
 })
 export class SharedServiceService {
 
-  //@Output() change: EventEmitter<boolean> = new EventEmitter();
-
-  //constructor(private http: HttpClient) { }
 
   private subject = new Subject<any>();
 
@@ -20,7 +17,4 @@ export class SharedServiceService {
     return this.subject.asObservable();
   }
 
-  /*toggle(id) {
-    this.change.emit(id);
-  }*/
 }

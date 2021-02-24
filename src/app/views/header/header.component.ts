@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Subscription} from "rxjs";
 import {TokenStorageService} from "../../services/token-storage.service";
 import {SharedServiceService} from "../../services/shared-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
 
   clickEventSubscription: Subscription;
 
-  constructor(private tokenStorageService: TokenStorageService, private sharedService: SharedServiceService) {
+  constructor(private tokenStorageService: TokenStorageService, private sharedService: SharedServiceService, private router:Router) {
     this.clickEventSubscription=this.sharedService.getClickEvent().subscribe(()=>{
       this.ngOnInit()
     })
@@ -39,6 +40,18 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.tokenStorageService.signOut();
     window.location.reload();
+  }
+
+  navigate(){
+    if(this.roles.includes('STUDENT')){
+      this.router.navigate( ['/student'], {
+        queryParams: {userName: this.username}
+      } );
+    }else if(this.roles.includes('TEACHER')){
+      this.router.navigate( ['/teacher'],{
+        queryParams: {userName: this.username}
+      } );
+    }
   }
 
 }
