@@ -37,39 +37,55 @@
       </div>
     </div>
 
-    <!--<div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionReviewState">
+    <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionstatistics">
       <h3>Assignment - {{asmntId}}</h3>
-      <h3>Question No - {{studentmarks.qNo}}</h3>
+      <h3>Question No - {{qNo}}</h3>
       <br>
-      <table class="table">
+      <h4>Student Marks</h4>
+      <table class="table table-fixed">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">StudentId</th>
+          <th scope="col">Answer</th>
+          <th scope="col">Attempts</th>
+          <th scope="col">Result</th>
+          <th scope="col">spentTime</th>
+        </tr>
+        </thead>
         <tbody>
-        <tr>
-          <th scope="row">Question</th>
-          <td>{{studentmarks.question}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Your Answer</th>
-          <td>{{studentmarks.studentAns}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Result</th>
-          <td>{{studentmarks.result}}</td>
-        </tr>
-        <tr>
-          <th scope="row">No of Attempts</th>
-          <td>{{studentmarks.noOfAttempts}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Time spent</th>
-          <td>{{studentmarks.spentTime}}</td>
-        </tr>
-        <tr>
-          <th scope="row">Correct Answer</th>
-          <td>{{studentmarks.correctAnswer}}</td>
+        <tr *ngFor="let m of studentMarks">
+          <th scope="row">{{m.studentId}}
+          <td>{{m.answer}}</td>
+          <td>{{m.noOfAttempts}}</td>
+          <td>{{m.result}}</td>
+          <td>{{m.spentTime}}</td>
         </tr>
         </tbody>
       </table>
-    </div>-->
+
+
+      <h4>Question Statistics</h4>
+
+      <table class="table table-fixed">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">Avg time spent</th>
+          <th scope="col">Right answer count</th>
+          <th scope="col">Wrong answer count</th>
+          <th scope="col">Partial answer count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+          <th scope="row">{{statistics.avgTime}}
+          <td>{{statistics.rightCount}}</td>
+          <td>{{statistics.wrongCount}}</td>
+          <td>{{statistics.partialCount}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
   </div>
 </section>
 

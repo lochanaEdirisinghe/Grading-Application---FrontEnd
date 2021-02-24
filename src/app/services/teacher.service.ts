@@ -25,4 +25,8 @@ export class TeacherService {
     return this.http.get<ResponseDto>(this.url2+ "questions/"+ asmntId)
   }
 
+  getQuestionStatics(asmntId, qNo): Observable<ResponseDto>{
+    return this.http.get<ResponseDto>(this.url+ asmntId+"/"+qNo)
+  }
+
 }
