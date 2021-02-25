@@ -57,7 +57,6 @@ export class TeacherComponent implements OnInit {
       }
     })
     this.teacherService.getOverallGrades(asmntId).subscribe((resp)=>{
-      console.log(resp.data)
       this.gradeDetails=resp.data;
     })
   }
@@ -65,7 +64,6 @@ export class TeacherComponent implements OnInit {
     this.stateManager("questionstatistics")
     this.qNo=qNo;
       this.teacherService.getQuestionStatics(asmntId, qNo).subscribe((resp)=>{
-        console.log(resp.data)
         this.statistics=new StatisticsDto(resp.data.avgTime, resp.data.rightCount, resp.data.wrongCount, resp.data.partialCount)
         this.studentMarks=resp.data.studentMarks
       })
@@ -85,6 +83,10 @@ export class TeacherComponent implements OnInit {
       this.questionState=false;
       this.questionstatistics=false;
     }
+  }
+
+  back(){
+    this.stateManager('questionState')
   }
 
 

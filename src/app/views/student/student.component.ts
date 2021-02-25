@@ -62,12 +62,14 @@ export class StudentComponent implements OnInit {
     this.stateManager('questionReviewState')
     let j=0;
     for (let i = 0; i< this.questions.length; i++){
-      if(this.questions[i].asmntId==asmntId){
+      if(this.questions[i].asmntId==asmntId && this.questions[i].qNo==qNo){
         j=i;
         break
       }
     }
       this.studentService.getStudentMarks(asmntId,qNo,this.studentdto.id).subscribe((resp)=>{
+        console.log(this.questions)
+        console.log(resp.data)
           this.studentmarks=new StudentMarksDto(qNo, this.questions[j].question, resp.data.answer, resp.data.noOfAttempts, resp.data.result,
           this.questions[j].correctAnswer, resp.data.spentTime)
       })

@@ -63,6 +63,9 @@
     <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionstatistics">
       <h3>Assignment - {{asmntId}}</h3>
       <h3>Question No - {{qNo}}</h3>
+
+        <button type="button" class="btn btn-primary" style="text-align:left;float:left;" (click)="back()">Back</button>
+
       <br>
       <h4>Student Marks</h4>
       <table class="table table-fixed">
