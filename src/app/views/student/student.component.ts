@@ -15,6 +15,7 @@ export class StudentComponent implements OnInit {
 
   username:string;
   asmntId:string;
+  grade:string;
   studentdto: StudentDto=new StudentDto("S001");
   assingments: AssingmentDto[] = []
   questions: QuestionDto[] = []
@@ -27,6 +28,7 @@ export class StudentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.stateManager("assignmentState")
     this.route.queryParamMap.subscribe((value) => {
         this.username = value.get('userName');
 
@@ -48,6 +50,14 @@ export class StudentComponent implements OnInit {
     this.studentService.getAsmntQuestions(asmntId).subscribe((resp)=>{
       for (let i = 0; i< resp.data.length; i++){
         this.questions.push(new QuestionDto(asmntId, resp.data[i].questionPK.qno, resp.data[i].question, resp.data[i].answer))
+      }
+    })
+    this.studentService.getOverallGrades(asmntId).subscribe((resp)=>{
+      console.log(resp.data)
+      for (let i = 0; i< resp.data.length; i++){
+        if(resp.data[i].studentId==this.studentdto.id){
+          this.grade=resp.data[i].grade
+        }
       }
     })
   }
@@ -74,6 +84,7 @@ export class StudentComponent implements OnInit {
           this.questions[j].correctAnswer, resp.data.spentTime)
       })
   };
+
 
   back(){
     this.stateManager('questionState');

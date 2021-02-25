@@ -25,6 +25,7 @@
 
     <div class="col-sm-10 shadow-lg pt-5 pb-5 asmntblock" style="background-color: white" *ngIf="questionState">
       <h3>Assignment - {{asmntId}}</h3>
+      <h4>Your Grade : {{grade}}</h4>
       <br>
       <div *ngFor="let q of questions">
         <div class="alert alert-success" role="alert">
