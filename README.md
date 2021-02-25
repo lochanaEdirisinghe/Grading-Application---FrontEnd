@@ -4,8 +4,8 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### User these 2 users to check the application 
 
-student - username - kamal12 & password - kamal
-teacher - username - chamari12 & password -chamari
+Student -: username - kamal12 & password - kamal                   
+Teacher -: username - chamari12 & password -chamari
 
 
 ## Development server
